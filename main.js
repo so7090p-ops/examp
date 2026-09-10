@@ -1,25 +1,11 @@
-/* =====================================
-   الأيام
-===================================== */
-
 const DAYS = [
-
     "الأحد",
     "الاثنين",
-    "الثلاثاء",
-    "الأربعاء",
-    "الخميس"
-
+    "الثلاثاء"
 ];
 
 
-
-/* =====================================
-   المجالات الافتراضية
-===================================== */
-
 const DEFAULT_FIELDS = [
-
     "المواطنة والحياة",
     "الصحة والسلامة",
     "العلوم والتقنية",
@@ -28,109 +14,57 @@ const DEFAULT_FIELDS = [
     "النشاط الكشفي",
     "الأنشطة الثقافية",
     "البرامج التربوية"
-
 ];
 
-
-
-/* =====================================
-   تواريخ الأسابيع مثل الصورة
-===================================== */
 
 const DEFAULT_DATES = [
-
     "1448/3/10 - 1448/3/14",
-
     "1448/3/17 - 1448/3/21",
-
     "1448/3/24 - 1448/3/28",
-
     "1448/4/2 - 1448/4/6",
-
     "1448/4/9 - 1448/4/13",
-
     "1448/4/16 - 1448/4/20",
-
     "1448/4/23 - 1448/4/27",
-
     "1448/4/30 - 1448/5/4",
-
     "1448/5/7 - 1448/5/11",
-
     "1448/5/14 - 1448/5/18",
-
     "1448/5/21 - 1448/5/25",
-
     "1448/5/28 - 1448/6/2",
-
     "1448/6/5 - 1448/6/9",
-
     "1448/6/12 - 1448/6/16",
-
     "1448/6/19 - 1448/6/23",
-
     "1448/6/26 - 1448/6/30",
-
     "1448/7/11 - 1448/7/15",
-
     "1448/7/18 - 1448/7/22"
-
 ];
 
 
-
-/* =====================================
-   البيانات
-===================================== */
-
 let fields =
-
     JSON.parse(
-        localStorage.getItem(
-            "activityFields"
-        )
+        localStorage.getItem("activityFields")
     ) || DEFAULT_FIELDS;
 
 
-
 let weekDates =
-
     JSON.parse(
-        localStorage.getItem(
-            "weekDates"
-        )
+        localStorage.getItem("weekDates")
     ) || DEFAULT_DATES;
 
 
-
 let data =
-
     JSON.parse(
-        localStorage.getItem(
-            "activityPlan"
-        )
+        localStorage.getItem("activityPlan")
     ) || {};
 
 
-
 let selectedWeek = null;
-
 let selectedDay = null;
 
 
-
-/* =====================================
-   إنشاء الأسابيع
-===================================== */
-
 function createWeeks() {
 
-
     const container =
-        document.getElementById(
-            "weeksContainer"
-        );
-
+        document.getElementById("weeksContainer");
 
     container.innerHTML = "";
 
@@ -141,22 +75,15 @@ function createWeeks() {
         week++
     ) {
 
-
         if (!data[week]) {
-
             data[week] = {};
-
         }
 
 
         const card =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        card.className =
-            "week-card";
+        card.className = "week-card";
 
 
         card.innerHTML = `
@@ -166,9 +93,7 @@ function createWeeks() {
                 الأسبوع ${week}
 
                 <div class="week-date">
-
                     ${weekDates[week - 1]}
-
                 </div>
 
             </div>
@@ -177,9 +102,7 @@ function createWeeks() {
             <div class="days-header">
 
                 <div>اليوم</div>
-
                 <div>البرنامج</div>
-
                 <div>الحصص</div>
 
             </div>
@@ -187,33 +110,23 @@ function createWeeks() {
         `;
 
 
-
         DAYS.forEach(day => {
 
-
             if (!data[week][day]) {
-
                 data[week][day] = [];
-
             }
 
 
             const row =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
-
-            row.className =
-                "day-row";
+            row.className = "day-row";
 
 
             row.innerHTML = `
 
                 <div class="day-name">
-
                     ${day}
-
                 </div>
 
 
@@ -221,20 +134,14 @@ function createWeeks() {
                     class="day-content"
                     onclick="openProgram(${week}, '${day}')">
 
-                    ${renderPrograms(
-                        week,
-                        day
-                    )}
+                    ${renderPrograms(week, day)}
 
                 </div>
 
 
                 <div class="day-sessions">
 
-                    ${getDaySessions(
-                        week,
-                        day
-                    )}
+                    ${getDaySessions(week, day)}
 
                 </div>
 
@@ -257,15 +164,7 @@ function createWeeks() {
 
 
 
-/* =====================================
-   عرض البرامج
-===================================== */
-
-function renderPrograms(
-    week,
-    day
-) {
-
+function renderPrograms(week, day) {
 
     const programs =
         data[week][day];
@@ -276,7 +175,6 @@ function renderPrograms(
         programs.length === 0
     ) {
 
-
         return `
 
             <div class="no-program">
@@ -284,9 +182,7 @@ function renderPrograms(
                 لا يوجد برنامج
 
                 <div class="add-text">
-
                     + اضغطي للإضافة
-
                 </div>
 
             </div>
@@ -313,27 +209,17 @@ function renderPrograms(
             >
 
                 <div class="program-name">
-
-                    ${escapeHtml(
-                        program.name
-                    )}
-
+                    ${escapeHtml(program.name)}
                 </div>
 
 
                 <div class="program-field">
-
-                    ${escapeHtml(
-                        program.field
-                    )}
-
+                    ${escapeHtml(program.field)}
                 </div>
 
 
                 <div class="program-sessions">
-
                     حصص: ${program.sessions}
-
                 </div>
 
             </div>
@@ -346,28 +232,15 @@ function renderPrograms(
 
 
 
-/* =====================================
-   مجموع حصص اليوم
-===================================== */
-
-function getDaySessions(
-    week,
-    day
-) {
-
+function getDaySessions(week, day) {
 
     return (
-
         data[week][day] || []
-
     ).reduce(
 
         (total, item) =>
-
             total +
-            Number(
-                item.sessions || 0
-            ),
+            Number(item.sessions || 0),
 
         0
 
@@ -377,18 +250,9 @@ function getDaySessions(
 
 
 
-/* =====================================
-   فتح إضافة برنامج
-===================================== */
-
-function openProgram(
-    week,
-    day
-) {
-
+function openProgram(week, day) {
 
     selectedWeek = week;
-
     selectedDay = day;
 
 
@@ -441,19 +305,13 @@ function openProgram(
 
 
 
-/* =====================================
-   تعديل البرنامج
-===================================== */
-
 function editProgram(
     week,
     day,
     index
 ) {
 
-
     selectedWeek = week;
-
     selectedDay = day;
 
 
@@ -520,12 +378,7 @@ function editProgram(
 
 
 
-/* =====================================
-   حفظ البرنامج
-===================================== */
-
 function saveProgram() {
-
 
     const name =
         document.getElementById(
@@ -569,35 +422,28 @@ function saveProgram() {
 
 
     if (!data[selectedWeek]) {
-
         data[selectedWeek] = {};
-
     }
 
 
-    if (
-        !data[selectedWeek][selectedDay]
-    ) {
-
+    if (!data[selectedWeek][selectedDay]) {
         data[selectedWeek][selectedDay] = [];
-
     }
 
 
-    data[selectedWeek][selectedDay]
-        .push({
+    data[selectedWeek][selectedDay].push({
 
-            name: name,
+        name: name,
 
-            field: field,
+        field: field,
 
-            sessions: sessions,
+        sessions: sessions,
 
-            teacher: teacher,
+        teacher: teacher,
 
-            notes: notes
+        notes: notes
 
-        });
+    });
 
 
     saveAll(false);
@@ -610,12 +456,7 @@ function saveProgram() {
 
 
 
-/* =====================================
-   المجالات
-===================================== */
-
 function fillFields() {
-
 
     const select =
         document.getElementById(
@@ -628,11 +469,8 @@ function fillFields() {
 
     fields.forEach(field => {
 
-
         const option =
-            document.createElement(
-                "option"
-            );
+            document.createElement("option");
 
 
         option.value = field;
@@ -648,12 +486,7 @@ function fillFields() {
 
 
 
-/* =====================================
-   إعدادات المجالات والتواريخ
-===================================== */
-
 function openSettings() {
-
 
     document.getElementById(
         "fieldsInput"
@@ -674,7 +507,6 @@ function openSettings() {
 
 function createDateSettings() {
 
-
     const container =
         document.getElementById(
             "datesInput"
@@ -690,11 +522,8 @@ function createDateSettings() {
         i++
     ) {
 
-
         const box =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         box.className =
@@ -724,27 +553,18 @@ function createDateSettings() {
 
 
 
-/* =====================================
-   حفظ الإعدادات
-===================================== */
-
 function saveSettings() {
 
-
     fields =
-
         document.getElementById(
             "fieldsInput"
         ).value
 
         .split("\n")
 
-        .map(
-            item => item.trim()
-        )
+        .map(item => item.trim())
 
         .filter(Boolean);
-
 
 
     for (
@@ -752,7 +572,6 @@ function saveSettings() {
         i < 18;
         i++
     ) {
-
 
         const input =
             document.getElementById(
@@ -771,20 +590,14 @@ function saveSettings() {
 
 
     localStorage.setItem(
-
         "activityFields",
-
         JSON.stringify(fields)
-
     );
 
 
     localStorage.setItem(
-
         "weekDates",
-
         JSON.stringify(weekDates)
-
     );
 
 
@@ -803,39 +616,23 @@ function saveSettings() {
 
 
 
-/* =====================================
-   حفظ كل شيء
-===================================== */
-
-function saveAll(
-    showMessage = true
-) {
-
+function saveAll(showMessage = true) {
 
     localStorage.setItem(
-
         "activityPlan",
-
         JSON.stringify(data)
-
     );
 
 
     localStorage.setItem(
-
         "activityFields",
-
         JSON.stringify(fields)
-
     );
 
 
     localStorage.setItem(
-
         "weekDates",
-
         JSON.stringify(weekDates)
-
     );
 
 
@@ -854,15 +651,9 @@ function saveAll(
 
 
 
-/* =====================================
-   الإحصائيات
-===================================== */
-
 function updateSummary() {
 
-
     let programs = 0;
-
     let sessions = 0;
 
 
@@ -872,20 +663,17 @@ function updateSummary() {
         week++
     ) {
 
-
         if (!data[week])
             continue;
 
 
         DAYS.forEach(day => {
 
-
             const list =
                 data[week][day] || [];
 
 
-            programs +=
-                list.length;
+            programs += list.length;
 
 
             list.forEach(item => {
@@ -917,10 +705,6 @@ function updateSummary() {
 
 
 
-/* =====================================
-   إغلاق النوافذ
-===================================== */
-
 function closeModal() {
 
     document.getElementById(
@@ -928,6 +712,7 @@ function closeModal() {
     ).classList.remove("show");
 
 }
+
 
 
 function closeSettings() {
@@ -940,12 +725,7 @@ function closeSettings() {
 
 
 
-/* =====================================
-   مسح جميع البرامج
-===================================== */
-
 function clearAll() {
-
 
     if (
         !confirm(
@@ -972,46 +752,23 @@ function clearAll() {
 
 
 
-/* =====================================
-   حماية النص
-===================================== */
-
 function escapeHtml(text) {
 
     return String(text)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g, "&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g, "&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g, "&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g, "&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g, "&#039;");
 
 }
 
 
-
-/* =====================================
-   تشغيل الموقع
-===================================== */
 
 document.addEventListener(
 
