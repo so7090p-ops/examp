@@ -1,76 +1,753 @@
 /* =========================================
-   الطباعة A4 - 18 أسبوع في صفحة واحدة
+   الإعدادات العامة
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    direction: rtl;
+}
+
+body {
+    margin: 0;
+    background: #f1f4f4;
+    color: #173f49;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+
+/* =========================================
+   رأس الصفحة
+========================================= */
+
+.header {
+    background: white;
+
+    border-top: 5px solid #168f87;
+    border-bottom: 5px solid #168f87;
+
+    padding: 12px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+}
+
+.header-right {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+.ministry {
+    color: #159589;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.school-info {
+    border-right: 2px solid #d7e5e5;
+
+    padding-right: 18px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    line-height: 1.7;
+}
+
+.school-info span {
+    color: #168b86;
+}
+
+.header-left {
+    text-align: left;
+}
+
+.header-left h1 {
+    margin: 0;
+
+    color: #164d5b;
+
+    font-size: 24px;
+}
+
+.header-left p {
+    margin: 4px 0 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   لوحة التحكم
+========================================= */
+
+.control-panel {
+    max-width: 1400px;
+
+    margin: 0 auto 15px;
+
+    padding: 10px 15px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.summary {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-bottom: 9px;
+
+    font-size: 13px;
+}
+
+.summary strong {
+    color: #159589;
+
+    font-size: 17px;
+}
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+button {
+    border: 0;
+
+    border-radius: 6px;
+
+    padding: 8px 13px;
+
+    background: #164d5b;
+
+    color: white;
+
+    font-family: Tahoma, Arial, sans-serif;
+
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .9;
+}
+
+.green {
+    background: #159589 !important;
+}
+
+.red {
+    background: #b44d4d !important;
+}
+
+
+/* =========================================
+   شبكة الأسابيع
+========================================= */
+
+.weeks-container {
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 0 10px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+/* =========================================
+   بطاقة الأسبوع
+========================================= */
+
+.week-card {
+    background: white;
+
+    border: 1px solid #c5d4d7;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,.09);
+}
+
+.week-title {
+    background: #124958;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 7px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    border-bottom: 3px solid #18a38f;
+}
+
+.week-date {
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    font-weight: normal;
+}
+
+
+/* =========================================
+   رأس الأيام
+========================================= */
+
+.days-header {
+    display: grid;
+
+    grid-template-columns:
+        62px 1fr 48px;
+
+    background: #edf2f2;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    padding: 4px;
+}
+
+
+/* =========================================
+   صف اليوم
+========================================= */
+
+.day-row {
+    display: grid;
+
+    grid-template-columns:
+        62px 1fr 48px;
+
+    min-height: 44px;
+
+    border-bottom: 1px solid #e0e5e5;
+}
+
+.day-row:last-child {
+    border-bottom: none;
+}
+
+.day-name {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.day-content {
+    padding: 4px;
+
+    cursor: pointer;
+
+    min-width: 0;
+}
+
+.day-content:hover {
+    background: #edf9f7;
+}
+
+.day-sessions {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #159589;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   لا يوجد برنامج
+========================================= */
+
+.no-program {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 10px;
+
+    padding: 7px;
+}
+
+.add-text {
+    color: #159589;
+
+    font-size: 8px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   البرنامج
+========================================= */
+
+.program-item {
+    background: #f4f8f8;
+
+    border-right: 3px solid #159589;
+
+    border-radius: 5px;
+
+    padding: 4px 5px;
+
+    margin-bottom: 3px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.program-item:last-child {
+    margin-bottom: 0;
+}
+
+.program-name {
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #164d5b;
+}
+
+.program-field {
+    font-size: 8px;
+
+    color: #777;
+
+    margin-top: 2px;
+}
+
+.program-sessions {
+    font-size: 8px;
+
+    color: #159589;
+}
+
+
+/* =========================================
+   النوافذ
+========================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background: rgba(0,0,0,.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(500px,100%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 13px;
+
+    padding: 20px;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+}
+
+.settings-box {
+    width: min(650px,100%);
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ddd;
+
+    margin-bottom: 14px;
+}
+
+.modal-header h2 {
+    margin: 0 0 10px;
+
+    color: #164d5b;
+}
+
+.modal-header button {
+    background: #b44d4d;
+
+    font-size: 18px;
+
+    padding: 2px 9px;
+}
+
+.selected-day {
+    background: #edf8f6;
+
+    border-radius: 6px;
+
+    padding: 9px;
+
+    line-height: 1.8;
+
+    margin-bottom: 12px;
+}
+
+.modal-box label {
+    display: block;
+
+    margin: 9px 0 4px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+    width: 100%;
+
+    border: 1px solid #ccd8d9;
+
+    border-radius: 6px;
+
+    padding: 8px;
+
+    font-family: Tahoma, Arial, sans-serif;
+
+    font-size: 11px;
+
+    outline: none;
+}
+
+.modal-box textarea {
+    min-height: 75px;
+
+    resize: vertical;
+}
+
+.modal-box input:focus,
+.modal-box select:focus,
+.modal-box textarea:focus {
+    border-color: #159589;
+}
+
+.modal-buttons {
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+.modal-buttons button {
+    flex: 1;
+}
+
+.save-btn {
+    background: #159589;
+}
+
+.cancel-btn {
+    background: #777;
+}
+
+.hint {
+    color: #777;
+
+    font-size: 11px;
+}
+
+.fields-input {
+    min-height: 130px;
+}
+
+.dates-input {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 7px;
+
+    max-height: 350px;
+
+    overflow-y: auto;
+}
+
+.date-setting {
+    border: 1px solid #d5dfdf;
+
+    border-radius: 6px;
+
+    padding: 7px;
+
+    background: #f8fafa;
+}
+
+.date-setting strong {
+    display: block;
+
+    color: #164d5b;
+
+    margin-bottom: 4px;
+
+    font-size: 11px;
+}
+
+.date-setting input {
+    font-size: 10px;
+
+    padding: 6px;
+}
+
+
+/* =========================================
+   الجوال
+========================================= */
+
+@media (max-width:900px) {
+
+    .header {
+        padding: 9px;
+    }
+
+    .header-right {
+        gap: 8px;
+    }
+
+    .ministry {
+        font-size: 12px;
+    }
+
+    .school-info {
+        font-size: 8px;
+
+        padding-right: 8px;
+    }
+
+    .header-left h1 {
+        font-size: 14px;
+    }
+
+    .header-left p {
+        font-size: 8px;
+    }
+
+    .weeks-container {
+        grid-template-columns: 1fr;
+
+        padding: 0 7px;
+    }
+
+    .dates-input {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   الطباعة
+   A4 صفحة واحدة فقط
 ========================================= */
 
 @media print {
 
     @page {
         size: A4 portrait;
-        margin: 3mm;
+        margin: 0;
     }
 
-    * {
-        box-sizing: border-box !important;
-    }
 
     html,
     body {
+
         width: 210mm !important;
+
         height: 297mm !important;
+
         margin: 0 !important;
+
         padding: 0 !important;
-        background: #fff !important;
+
+        background: #ffffff !important;
+
         overflow: hidden !important;
     }
 
+
     /* إخفاء أدوات الموقع */
+
     .control-panel,
     .modal {
+
         display: none !important;
     }
 
-    /* رأس الصفحة */
+
+    /* =====================================
+       الرأس
+    ===================================== */
+
     .header {
+
+        position: absolute !important;
+
+        top: 3mm !important;
+
+        right: 3mm !important;
+
+        left: 3mm !important;
+
         width: 204mm !important;
-        height: 18mm !important;
-        margin: 0 auto 2mm !important;
+
+        height: 17mm !important;
+
+        margin: 0 !important;
+
         padding: 2mm 4mm !important;
 
-        background: #fff !important;
-        border-top: 1.5px solid #168f87 !important;
-        border-bottom: 1.5px solid #168f87 !important;
+        background: #ffffff !important;
+
+        border-top: 1px solid #168f87 !important;
+
+        border-bottom: 1px solid #168f87 !important;
 
         box-shadow: none !important;
+
+        overflow: hidden !important;
     }
+
+
+    .header-right {
+        gap: 4mm !important;
+    }
+
 
     .ministry {
+
         font-size: 8px !important;
+
+        color: #159589 !important;
     }
 
+
     .school-info {
+
         font-size: 5px !important;
+
+        padding-right: 4px !important;
+
         line-height: 1.2 !important;
     }
 
-    .header-left h1 {
-        font-size: 11px !important;
-    }
 
-    .header-left p {
-        font-size: 5px !important;
+    .header-left h1 {
+
+        font-size: 11px !important;
+
         margin: 0 !important;
     }
 
-    /* ==============================
-       18 أسبوع
-       3 أعمدة × 6 صفوف
-    ============================== */
+
+    .header-left p {
+
+        font-size: 5px !important;
+
+        margin: 0 !important;
+    }
+
+
+    /* =====================================
+       شبكة الأسابيع
+    ===================================== */
 
     .weeks-container {
-        width: 204mm !important;
-        height: 273mm !important;
 
-        margin: 0 auto !important;
+        position: absolute !important;
+
+        top: 22mm !important;
+
+        right: 3mm !important;
+
+        left: 3mm !important;
+
+        width: 204mm !important;
+
+        height: 270mm !important;
+
+        margin: 0 !important;
+
         padding: 0 !important;
 
         display: grid !important;
@@ -79,29 +756,50 @@
             repeat(3, 1fr) !important;
 
         grid-template-rows:
-            repeat(6, 1fr) !important;
+            repeat(6, 43mm) !important;
 
-        gap: 1.2mm !important;
+        column-gap: 1.5mm !important;
+
+        row-gap: 1.5mm !important;
 
         overflow: hidden !important;
 
         page-break-before: avoid !important;
+
         page-break-after: avoid !important;
+
+        page-break-inside: avoid !important;
+
+        break-before: avoid !important;
+
+        break-after: avoid !important;
+
+        break-inside: avoid !important;
     }
 
-    /* بطاقة الأسبوع */
+
+    /* =====================================
+       بطاقة الأسبوع
+    ===================================== */
+
     .week-card {
-        width: 100% !important;
-        height: 44mm !important;
-        min-height: 44mm !important;
-        max-height: 44mm !important;
+
+        width: auto !important;
+
+        height: 43mm !important;
+
+        min-height: 43mm !important;
+
+        max-height: 43mm !important;
 
         margin: 0 !important;
+
         padding: 0 !important;
 
-        background: #fff !important;
+        background: #ffffff !important;
 
-        border: 0.4px solid #aebbbb !important;
+        border: .4px solid #aebbbb !important;
+
         border-radius: 1.5mm !important;
 
         box-shadow: none !important;
@@ -109,139 +807,207 @@
         overflow: hidden !important;
 
         break-inside: avoid !important;
+
         page-break-inside: avoid !important;
     }
 
-    /* عنوان الأسبوع */
+
+    /* =====================================
+       عنوان الأسبوع
+    ===================================== */
+
     .week-title {
+
         height: 7mm !important;
 
         padding: 1mm !important;
 
-        font-size: 7.5px !important;
-        line-height: 1.1 !important;
+        font-size: 7px !important;
+
+        line-height: 1 !important;
 
         background: #124958 !important;
-        color: white !important;
 
-        border-bottom: 0.7px solid #18a38f !important;
+        color: #ffffff !important;
+
+        border-bottom: 1px solid #18a38f !important;
+
+        overflow: hidden !important;
     }
+
 
     .week-date {
+
         font-size: 4.5px !important;
-        margin-top: 0.5mm !important;
+
+        margin-top: .5mm !important;
+
+        white-space: nowrap !important;
     }
 
-    /* رأس الأيام */
+
+    /* =====================================
+       رأس الجدول
+    ===================================== */
+
     .days-header {
+
         height: 4mm !important;
 
         display: grid !important;
 
         grid-template-columns:
-            13mm 1fr 9mm !important;
+            13mm 1fr 8mm !important;
 
-        padding: 0.6mm !important;
+        padding: .5mm !important;
 
         font-size: 4.5px !important;
+
         line-height: 1 !important;
 
-        background: #edf2f2 !important;
+        overflow: hidden !important;
     }
 
-    /* الأيام */
+
+    /* =====================================
+       الأيام الثلاثة
+    ===================================== */
+
     .day-row {
-        height: 10.8mm !important;
-        min-height: 10.8mm !important;
-        max-height: 10.8mm !important;
+
+        height: 10mm !important;
+
+        min-height: 10mm !important;
+
+        max-height: 10mm !important;
 
         display: grid !important;
 
         grid-template-columns:
-            13mm 1fr 9mm !important;
+            13mm 1fr 8mm !important;
 
-        padding: 0 !important;
         margin: 0 !important;
 
-        border-bottom: 0.3px solid #d9dfdf !important;
+        padding: 0 !important;
+
+        border-bottom: .3px solid #d9dfdf !important;
 
         overflow: hidden !important;
 
         break-inside: avoid !important;
+
         page-break-inside: avoid !important;
     }
 
+
     .day-name {
+
         font-size: 5px !important;
-    }
-
-    .day-content {
-        padding: 0.6mm !important;
-
-        min-width: 0 !important;
-        max-width: 100% !important;
 
         overflow: hidden !important;
     }
 
-    .day-sessions {
-        font-size: 5px !important;
+
+    .day-content {
+
+        min-width: 0 !important;
+
+        max-width: 100% !important;
+
+        padding: .5mm !important;
+
+        overflow: hidden !important;
     }
 
-    /* لا يوجد برنامج */
-    .no-program {
-        font-size: 4.5px !important;
-        padding: 0.5mm !important;
+
+    .day-sessions {
+
+        font-size: 5px !important;
+
+        overflow: hidden !important;
     }
+
+
+    /* =====================================
+       البرنامج
+    ===================================== */
+
+    .program-item {
+
+        width: 100% !important;
+
+        padding: .35mm .7mm !important;
+
+        margin: 0 0 .2mm 0 !important;
+
+        border-right: .7px solid #159589 !important;
+
+        border-radius: .5mm !important;
+
+        overflow: hidden !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    .program-name {
+
+        font-size: 4.5px !important;
+
+        line-height: 1 !important;
+
+        white-space: nowrap !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+    }
+
+
+    .program-field {
+
+        font-size: 3.7px !important;
+
+        line-height: 1 !important;
+
+        white-space: nowrap !important;
+
+        overflow: hidden !important;
+
+        text-overflow: ellipsis !important;
+    }
+
+
+    .program-sessions {
+
+        font-size: 3.7px !important;
+
+        line-height: 1 !important;
+    }
+
+
+    .no-program {
+
+        font-size: 4px !important;
+
+        padding: .4mm !important;
+    }
+
 
     .add-text {
         display: none !important;
     }
 
-    /* البرنامج */
-    .program-item {
-        padding: 0.45mm 0.8mm !important;
-        margin-bottom: 0.2mm !important;
 
-        border-right: 0.7px solid #159589 !important;
+    /* =====================================
+       منع الصفحات الإضافية
+    ===================================== */
 
-        border-radius: 0.7mm !important;
+    .weeks-container > .week-card {
 
-        overflow: hidden !important;
-
-        white-space: nowrap !important;
-    }
-
-    .program-name {
-        font-size: 4.7px !important;
-        line-height: 1.05 !important;
-
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    .program-field {
-        font-size: 3.9px !important;
-        line-height: 1 !important;
-
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    .program-sessions {
-        font-size: 3.9px !important;
-        line-height: 1 !important;
-    }
-
-    /* منع أي شيء من إضافة صفحات */
-    .weeks-container,
-    .week-card,
-    .week-title,
-    .days-header,
-    .day-row {
         break-inside: avoid !important;
+
         page-break-inside: avoid !important;
     }
+
 }
