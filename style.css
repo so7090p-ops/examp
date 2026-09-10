@@ -1,7 +1,3 @@
-/* =====================================================
-   الإعدادات العامة
-===================================================== */
-
 * {
     box-sizing: border-box;
 }
@@ -18,12 +14,13 @@ body {
 }
 
 
-/* =====================================================
-   رأس الصفحة
-===================================================== */
+/* ================================
+   الرأس
+================================ */
 
 .header {
     background: #fff;
+
     border-top: 5px solid #168f87;
     border-bottom: 5px solid #168f87;
 
@@ -44,17 +41,23 @@ body {
 
 .ministry {
     color: #159589;
+
     font-size: 20px;
+
     font-weight: bold;
+
     white-space: nowrap;
 }
 
 .school-info {
     border-right: 2px solid #d7e5e5;
+
     padding-right: 18px;
 
     font-size: 12px;
+
     font-weight: bold;
+
     line-height: 1.7;
 }
 
@@ -68,27 +71,34 @@ body {
 
 .header-left h1 {
     margin: 0;
+
     color: #164d5b;
+
     font-size: 24px;
 }
 
 .header-left p {
     margin: 4px 0 0;
+
     color: #777;
+
     font-size: 12px;
 }
 
 
-/* =====================================================
+/* ================================
    لوحة التحكم
-===================================================== */
+================================ */
 
 .control-panel {
     max-width: 1400px;
+
     margin: 0 auto 15px;
+
     padding: 10px 15px;
 
     background: white;
+
     border-radius: 10px;
 
     box-shadow: 0 2px 8px rgba(0,0,0,.08);
@@ -96,33 +106,45 @@ body {
 
 .summary {
     display: flex;
+
     justify-content: center;
+
     gap: 35px;
+
     margin-bottom: 9px;
+
     font-size: 13px;
 }
 
 .summary strong {
     color: #159589;
+
     font-size: 17px;
 }
 
 .buttons {
     display: flex;
+
     justify-content: center;
+
     gap: 7px;
+
     flex-wrap: wrap;
 }
 
 button {
     border: 0;
+
     border-radius: 6px;
+
     padding: 8px 13px;
 
     background: #164d5b;
+
     color: white;
 
     font-family: Tahoma, Arial, sans-serif;
+
     cursor: pointer;
 }
 
@@ -139,14 +161,15 @@ button:hover {
 }
 
 
-/* =====================================================
+/* ================================
    شبكة الأسابيع
-   18 أسبوع = 3 أعمدة × 6 صفوف
-===================================================== */
+================================ */
 
 .weeks-container {
     max-width: 1400px;
+
     margin: auto;
+
     padding: 0 10px;
 
     display: grid;
@@ -157,14 +180,15 @@ button:hover {
 }
 
 
-/* =====================================================
+/* ================================
    بطاقة الأسبوع
-===================================================== */
+================================ */
 
 .week-card {
     background: white;
 
     border: 1px solid #c5d4d7;
+
     border-radius: 10px;
 
     overflow: hidden;
@@ -176,6 +200,7 @@ button:hover {
 
 .week-title {
     background: #124958;
+
     color: white;
 
     text-align: center;
@@ -183,6 +208,7 @@ button:hover {
     padding: 7px;
 
     font-size: 16px;
+
     font-weight: bold;
 
     border-bottom: 3px solid #18a38f;
@@ -190,14 +216,16 @@ button:hover {
 
 .week-date {
     margin-top: 2px;
+
     font-size: 9px;
+
     font-weight: normal;
 }
 
 
-/* =====================================================
+/* ================================
    رأس جدول الأيام
-===================================================== */
+================================ */
 
 .days-header {
     display: grid;
@@ -208,15 +236,16 @@ button:hover {
     background: #edf2f2;
 
     font-size: 10px;
+
     font-weight: bold;
 
     padding: 4px;
 }
 
 
-/* =====================================================
+/* ================================
    صف اليوم
-===================================================== */
+================================ */
 
 .day-row {
     display: grid;
@@ -237,9 +266,11 @@ button:hover {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     font-size: 11px;
+
     font-weight: bold;
 }
 
@@ -259,18 +290,20 @@ button:hover {
     display: flex;
 
     justify-content: center;
+
     align-items: center;
 
     color: #159589;
 
     font-size: 11px;
+
     font-weight: bold;
 }
 
 
-/* =====================================================
+/* ================================
    لا يوجد برنامج
-===================================================== */
+================================ */
 
 .no-program {
     text-align: center;
@@ -291,9 +324,9 @@ button:hover {
 }
 
 
-/* =====================================================
+/* ================================
    البرامج
-===================================================== */
+================================ */
 
 .program-item {
     background: #f4f8f8;
@@ -317,6 +350,7 @@ button:hover {
 
 .program-name {
     font-size: 10px;
+
     font-weight: bold;
 
     color: #164d5b;
@@ -337,9 +371,9 @@ button:hover {
 }
 
 
-/* =====================================================
+/* ================================
    النوافذ
-===================================================== */
+================================ */
 
 .modal {
     display: none;
@@ -353,6 +387,7 @@ button:hover {
     background: rgba(0,0,0,.55);
 
     align-items: center;
+
     justify-content: center;
 
     padding: 15px;
@@ -386,6 +421,7 @@ button:hover {
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     border-bottom: 1px solid #ddd;
@@ -449,6 +485,7 @@ button:hover {
 
 .modal-box textarea {
     min-height: 75px;
+
     resize: vertical;
 }
 
@@ -480,6 +517,7 @@ button:hover {
 
 .hint {
     color: #777;
+
     font-size: 11px;
 }
 
@@ -521,13 +559,14 @@ button:hover {
 
 .date-setting input {
     font-size: 10px;
+
     padding: 6px;
 }
 
 
-/* =====================================================
+/* ================================
    الجوال
-===================================================== */
+================================ */
 
 @media (max-width:900px) {
 
@@ -545,6 +584,7 @@ button:hover {
 
     .school-info {
         font-size: 8px;
+
         padding-right: 8px;
     }
 
@@ -570,24 +610,28 @@ button:hover {
 
 /* =====================================================
    الطباعة
-   مهم جداً:
-   18 أسبوع في صفحة A4 واحدة
-   3 أعمدة × 6 صفوف
+   A4 صفحة واحدة
+   18 أسبوع = 3 أعمدة × 6 صفوف
 ===================================================== */
 
 @media print {
 
     @page {
         size: A4 portrait;
-        margin: 4mm;
+
+        margin: 3mm;
     }
+
 
     html,
     body {
-        width: 210mm !important;
-        height: 297mm !important;
+
+        width: 204mm !important;
+
+        height: 291mm !important;
 
         margin: 0 !important;
+
         padding: 0 !important;
 
         background: white !important;
@@ -595,81 +639,108 @@ button:hover {
         overflow: hidden !important;
 
         -webkit-print-color-adjust: exact !important;
+
         print-color-adjust: exact !important;
     }
 
 
-    /* إخفاء أدوات الموقع */
+    /* إخفاء لوحة التحكم */
 
     .control-panel,
     .modal {
+
         display: none !important;
     }
 
 
-    /* =================================================
+    /* ============================
        الرأس
-    ================================================= */
+    ============================ */
 
     .header {
-        width: 202mm !important;
-        height: 20mm !important;
 
-        margin: 0 auto 2mm auto !important;
+        width: 204mm !important;
 
-        padding: 2mm 4mm !important;
+        height: 18mm !important;
+
+        margin: 0 0 2mm 0 !important;
+
+        padding: 1.5mm 4mm !important;
+
+        display: flex !important;
+
+        align-items: center !important;
 
         background: white !important;
 
         border-top: 1px solid #168f87 !important;
+
         border-bottom: 1px solid #168f87 !important;
 
         box-shadow: none !important;
 
-        display: flex !important;
-
         page-break-after: avoid !important;
+
         break-after: avoid !important;
     }
 
+
     .header-right {
+
+        display: flex !important;
+
+        align-items: center !important;
+
         gap: 4mm !important;
     }
 
+
     .ministry {
-        font-size: 10px !important;
+
+        font-size: 9px !important;
+
         color: #159589 !important;
     }
 
+
     .school-info {
-        font-size: 6px !important;
 
-        padding-right: 4px !important;
+        font-size: 5.5px !important;
 
-        line-height: 1.3 !important;
+        padding-right: 3mm !important;
+
+        line-height: 1.25 !important;
     }
+
 
     .header-left h1 {
-        font-size: 13px !important;
+
+        font-size: 12px !important;
+
         margin: 0 !important;
     }
+
 
     .header-left p {
-        font-size: 6px !important;
+
+        font-size: 5.5px !important;
+
         margin: 0 !important;
     }
 
 
-    /* =================================================
+    /* ============================
        شبكة الأسابيع
-    ================================================= */
+    ============================ */
 
     .weeks-container {
 
-        width: 202mm !important;
-        height: 267mm !important;
+        width: 204mm !important;
 
-        margin: 0 auto !important;
+        height: 268mm !important;
+
+        margin: 0 !important;
+
         padding: 0 !important;
 
         display: grid !important;
@@ -678,56 +749,63 @@ button:hover {
             repeat(3, 1fr) !important;
 
         grid-template-rows:
-            repeat(6, 43mm) !important;
+            repeat(6, 43.5mm) !important;
 
-        gap: 1.5mm !important;
+        gap: 1.2mm !important;
 
         overflow: hidden !important;
 
         page-break-before: avoid !important;
+
         page-break-after: avoid !important;
+
         page-break-inside: avoid !important;
 
         break-before: avoid !important;
+
         break-after: avoid !important;
+
         break-inside: avoid !important;
     }
 
 
-    /* =================================================
+    /* ============================
        بطاقة الأسبوع
-    ================================================= */
+    ============================ */
 
     .week-card {
 
         width: 100% !important;
 
-        height: 43mm !important;
+        height: 43.5mm !important;
 
-        min-height: 43mm !important;
-        max-height: 43mm !important;
+        min-height: 43.5mm !important;
+
+        max-height: 43.5mm !important;
 
         margin: 0 !important;
+
         padding: 0 !important;
 
         background: white !important;
 
         border: .5px solid #aebbbb !important;
 
-        border-radius: 2mm !important;
+        border-radius: 1.5mm !important;
 
         box-shadow: none !important;
 
         overflow: hidden !important;
 
         page-break-inside: avoid !important;
+
         break-inside: avoid !important;
     }
 
 
-    /* =================================================
+    /* ============================
        عنوان الأسبوع
-    ================================================= */
+    ============================ */
 
     .week-title {
 
@@ -737,7 +815,7 @@ button:hover {
 
         font-size: 8px !important;
 
-        line-height: 1.1 !important;
+        line-height: 1.05 !important;
 
         background: #124958 !important;
 
@@ -748,28 +826,33 @@ button:hover {
         overflow: hidden !important;
     }
 
+
     .week-date {
+
+        margin-top: .5mm !important;
 
         font-size: 5.5px !important;
 
-        margin-top: .5mm !important;
+        line-height: 1 !important;
 
         white-space: nowrap !important;
     }
 
 
-    /* =================================================
-       رأس جدول الأيام
-    ================================================= */
+    /* ============================
+       رأس الأعمدة
+    ============================ */
 
     .days-header {
 
         height: 5mm !important;
 
-        grid-template-columns:
-            17mm 1fr 11mm !important;
+        display: grid !important;
 
-        padding: .7mm !important;
+        grid-template-columns:
+            16mm 1fr 10mm !important;
+
+        padding: .5mm !important;
 
         font-size: 5.5px !important;
 
@@ -779,21 +862,25 @@ button:hover {
     }
 
 
-    /* =================================================
-       الأيام
-    ================================================= */
+    /* ============================
+       صفوف الأيام
+    ============================ */
 
     .day-row {
 
         height: 10mm !important;
 
         min-height: 10mm !important;
+
         max-height: 10mm !important;
 
+        display: grid !important;
+
         grid-template-columns:
-            17mm 1fr 11mm !important;
+            16mm 1fr 10mm !important;
 
         padding: 0 !important;
+
         margin: 0 !important;
 
         border-bottom: .4px solid #d5dddd !important;
@@ -801,59 +888,80 @@ button:hover {
         overflow: hidden !important;
 
         page-break-inside: avoid !important;
+
         break-inside: avoid !important;
     }
 
+
     .day-name {
+
+        display: flex !important;
+
+        justify-content: center !important;
+
+        align-items: center !important;
 
         font-size: 6px !important;
 
         font-weight: bold !important;
     }
 
+
     .day-content {
 
-        padding: .7mm !important;
+        padding: .6mm !important;
 
         min-width: 0 !important;
 
         overflow: hidden !important;
     }
 
+
     .day-sessions {
+
+        display: flex !important;
+
+        justify-content: center !important;
+
+        align-items: center !important;
 
         font-size: 5.5px !important;
 
         font-weight: bold !important;
+
+        color: #159589 !important;
     }
 
 
-    /* =================================================
-       البرامج داخل الطباعة
-    ================================================= */
+    /* ============================
+       البرامج
+    ============================ */
 
     .program-item {
 
         width: 100% !important;
 
-        padding: .5mm .8mm !important;
+        padding: .4mm .7mm !important;
 
         margin: 0 0 .2mm 0 !important;
 
+        background: #f4f8f8 !important;
+
         border-right: 1px solid #159589 !important;
 
-        border-radius: .7mm !important;
+        border-radius: .5mm !important;
 
         overflow: hidden !important;
 
         white-space: nowrap !important;
     }
+
 
     .program-name {
 
         font-size: 5.5px !important;
 
-        line-height: 1.1 !important;
+        line-height: 1 !important;
 
         white-space: nowrap !important;
 
@@ -861,12 +969,15 @@ button:hover {
 
         text-overflow: ellipsis !important;
     }
+
 
     .program-field {
 
-        font-size: 4.7px !important;
+        font-size: 4.6px !important;
 
-        line-height: 1.1 !important;
+        line-height: 1 !important;
+
+        margin-top: .3mm !important;
 
         white-space: nowrap !important;
 
@@ -875,21 +986,48 @@ button:hover {
         text-overflow: ellipsis !important;
     }
 
+
     .program-sessions {
 
-        font-size: 4.7px !important;
+        font-size: 4.6px !important;
 
-        line-height: 1.1 !important;
+        line-height: 1 !important;
     }
+
 
     .no-program {
 
         font-size: 5px !important;
 
-        padding: .7mm !important;
+        padding: .5mm !important;
     }
 
+
     .add-text {
+
         display: none !important;
+    }
+
+
+    /* ============================
+       منع الصفحات الإضافية
+    ============================ */
+
+    .header,
+    .weeks-container,
+    .week-card,
+    .day-row {
+
+        page-break-before: avoid !important;
+
+        page-break-after: avoid !important;
+
+        page-break-inside: avoid !important;
+
+        break-before: avoid !important;
+
+        break-after: avoid !important;
+
+        break-inside: avoid !important;
     }
 }
