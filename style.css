@@ -1,917 +1,247 @@
 /* =========================================
-   إعدادات عامة
-========================================= */
-
-@page {
-    size: A4 landscape;
-    margin: 7mm;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: #f1f4f4;
-    font-family: Tahoma, Arial, sans-serif;
-    color: #173f49;
-}
-
-
-/* =========================================
-   رأس الموقع
-========================================= */
-
-.header {
-    background: white;
-    border-top: 5px solid #168f87;
-    border-bottom: 5px solid #168f87;
-
-    padding: 12px 25px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 12px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-}
-
-.ministry {
-    color: #159589;
-    font-size: 20px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.school-info {
-    border-right: 2px solid #d7e5e5;
-    padding-right: 18px;
-
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 1.7;
-}
-
-.school-info span {
-    color: #168b86;
-}
-
-.header-left {
-    text-align: left;
-}
-
-.header-left h1 {
-    margin: 0;
-    color: #164d5b;
-    font-size: 24px;
-}
-
-.header-left p {
-    margin: 4px 0 0;
-    color: #777;
-    font-size: 12px;
-}
-
-
-/* =========================================
-   لوحة التحكم
-========================================= */
-
-.control-panel {
-    max-width: 1400px;
-
-    margin: 0 auto 15px;
-
-    padding: 10px 15px;
-
-    background: white;
-
-    border-radius: 10px;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
-}
-
-.summary {
-    display: flex;
-    justify-content: center;
-
-    gap: 35px;
-
-    margin-bottom: 9px;
-
-    font-size: 13px;
-}
-
-.summary strong {
-    color: #159589;
-    font-size: 17px;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
-}
-
-button {
-    border: 0;
-
-    border-radius: 6px;
-
-    padding: 8px 13px;
-
-    background: #164d5b;
-
-    color: white;
-
-    font-family: Tahoma, Arial, sans-serif;
-
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: .9;
-}
-
-.green {
-    background: #159589 !important;
-}
-
-.red {
-    background: #b44d4d !important;
-}
-
-
-/* =========================================
-   بطاقات الأسابيع
-========================================= */
-
-.weeks-container {
-    max-width: 1400px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 10px;
-}
-
-.week-card {
-    background: white;
-
-    border: 1px solid #c5d4d7;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .09);
-}
-
-.week-title {
-    background: #124958;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 7px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    border-bottom: 3px solid #18a38f;
-}
-
-.week-date {
-    margin-top: 2px;
-
-    font-size: 9px;
-
-    font-weight: normal;
-
-    opacity: .95;
-}
-
-
-/* =========================================
-   رأس جدول الأيام
-========================================= */
-
-.days-header {
-    display: grid;
-
-    grid-template-columns: 62px 1fr 48px;
-
-    background: #edf2f2;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
-    padding: 4px;
-
-    border-bottom: 1px solid #d3dddd;
-}
-
-
-/* =========================================
-   صف اليوم
-========================================= */
-
-.day-row {
-    display: grid;
-
-    grid-template-columns: 62px 1fr 48px;
-
-    min-height: 44px;
-
-    border-bottom: 1px solid #e0e5e5;
-}
-
-.day-row:last-child {
-    border-bottom: none;
-}
-
-.day-name {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    font-size: 11px;
-
-    font-weight: bold;
-}
-
-.day-content {
-    padding: 4px;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.day-content:hover {
-    background: #edf9f7;
-}
-
-.no-program {
-    text-align: center;
-
-    color: #999;
-
-    font-size: 10px;
-
-    padding: 7px;
-}
-
-.add-text {
-    color: #159589;
-
-    font-size: 8px;
-
-    margin-top: 2px;
-}
-
-
-/* =========================================
-   البرنامج
-========================================= */
-
-.program-item {
-    background: #f4f8f8;
-
-    border-right: 3px solid #159589;
-
-    border-radius: 5px;
-
-    padding: 4px 5px;
-
-    margin-bottom: 3px;
-
-    cursor: pointer;
-}
-
-.program-item:last-child {
-    margin-bottom: 0;
-}
-
-.program-name {
-    font-size: 10px;
-
-    font-weight: bold;
-
-    color: #164d5b;
-}
-
-.program-field {
-    font-size: 8px;
-
-    color: #777;
-
-    margin-top: 2px;
-}
-
-.program-sessions {
-    font-size: 8px;
-
-    color: #159589;
-
-    margin-top: 1px;
-}
-
-.day-sessions {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    color: #159589;
-
-    font-size: 11px;
-
-    font-weight: bold;
-}
-
-
-/* =========================================
-   النوافذ
-========================================= */
-
-.modal {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1000;
-
-    background: rgba(0, 0, 0, .55);
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 15px;
-}
-
-.modal.show {
-    display: flex;
-}
-
-.modal-box {
-    width: min(500px, 100%);
-
-    max-height: 92vh;
-
-    overflow-y: auto;
-
-    background: white;
-
-    border-radius: 13px;
-
-    padding: 20px;
-
-    box-shadow: 0 10px 40px rgba(0, 0, 0, .25);
-}
-
-.settings-box {
-    width: min(650px, 100%);
-}
-
-.modal-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    border-bottom: 1px solid #ddd;
-
-    margin-bottom: 14px;
-}
-
-.modal-header h2 {
-    margin: 0 0 10px;
-
-    color: #164d5b;
-}
-
-.modal-header button {
-    background: #b44d4d;
-
-    font-size: 18px;
-
-    padding: 2px 9px;
-}
-
-.selected-day {
-    background: #edf8f6;
-
-    border-radius: 6px;
-
-    padding: 9px;
-
-    line-height: 1.8;
-
-    margin-bottom: 12px;
-}
-
-.modal-box label {
-    display: block;
-
-    margin: 9px 0 4px;
-
-    font-size: 11px;
-
-    font-weight: bold;
-}
-
-.modal-box input,
-.modal-box select,
-.modal-box textarea {
-    width: 100%;
-
-    border: 1px solid #ccd8d9;
-
-    border-radius: 6px;
-
-    padding: 8px;
-
-    font-family: Tahoma, Arial, sans-serif;
-
-    font-size: 11px;
-
-    outline: none;
-}
-
-.modal-box textarea {
-    min-height: 75px;
-
-    resize: vertical;
-}
-
-.modal-box input:focus,
-.modal-box select:focus,
-.modal-box textarea:focus {
-    border-color: #159589;
-}
-
-.modal-buttons {
-    display: flex;
-
-    gap: 7px;
-
-    margin-top: 15px;
-}
-
-.modal-buttons button {
-    flex: 1;
-}
-
-.save-btn {
-    background: #159589;
-}
-
-.cancel-btn {
-    background: #777;
-}
-
-.hint {
-    color: #777;
-
-    font-size: 11px;
-}
-
-.fields-input {
-    min-height: 130px;
-}
-
-.dates-input {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 7px;
-
-    max-height: 350px;
-
-    overflow-y: auto;
-}
-
-.date-setting {
-    border: 1px solid #d5dfdf;
-
-    border-radius: 6px;
-
-    padding: 7px;
-
-    background: #f8fafa;
-}
-
-.date-setting strong {
-    display: block;
-
-    color: #164d5b;
-
-    margin-bottom: 4px;
-
-    font-size: 11px;
-}
-
-.date-setting input {
-    font-size: 10px;
-
-    padding: 6px;
-}
-
-
-/* =========================================
-   الجوال
-========================================= */
-
-@media (max-width: 900px) {
-
-    .header {
-        padding: 9px;
-    }
-
-    .header-right {
-        gap: 8px;
-    }
-
-    .ministry {
-        font-size: 12px;
-    }
-
-    .school-info {
-        font-size: 8px;
-
-        padding-right: 8px;
-    }
-
-    .header-left h1 {
-        font-size: 14px;
-    }
-
-    .header-left p {
-        font-size: 8px;
-    }
-
-    .summary {
-        gap: 12px;
-
-        font-size: 9px;
-    }
-
-    .summary strong {
-        font-size: 13px;
-    }
-
-    .weeks-container {
-        grid-template-columns: 1fr;
-
-        padding: 0 7px;
-    }
-
-    .week-title {
-        font-size: 15px;
-    }
-
-    .dates-input {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* =========================================
-   الطباعة - صفحة A4 واحدة
+   الطباعة A4 - 18 أسبوع في صفحة واحدة
 ========================================= */
 
 @media print {
 
     @page {
-        size: A4 landscape;
+        size: A4 portrait;
         margin: 3mm;
+    }
+
+    * {
+        box-sizing: border-box !important;
     }
 
     html,
     body {
-        width: 100%;
-        height: 100%;
-
-        margin: 0;
-        padding: 0;
-
-        background: white;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        overflow: hidden !important;
     }
 
-
-    /* إخفاء أزرار التحكم */
-
-    .control-panel {
-        display: none !important;
-    }
-
+    /* إخفاء أدوات الموقع */
+    .control-panel,
     .modal {
         display: none !important;
     }
 
-
-    /* الرأس */
-
+    /* رأس الصفحة */
     .header {
+        width: 204mm !important;
+        height: 18mm !important;
+        margin: 0 auto 2mm !important;
+        padding: 2mm 4mm !important;
 
-        margin: 0 0 2mm 0;
+        background: #fff !important;
+        border-top: 1.5px solid #168f87 !important;
+        border-bottom: 1.5px solid #168f87 !important;
 
-        padding: 3px 8px;
-
-        border-top: 2px solid #168f87;
-
-        border-bottom: 2px solid #168f87;
-
-        box-shadow: none;
-
-        height: 13mm;
-
+        box-shadow: none !important;
     }
-
-
-    .header-right {
-
-        gap: 8px;
-
-    }
-
 
     .ministry {
-
-        font-size: 9px;
-
+        font-size: 8px !important;
     }
-
 
     .school-info {
-
-        font-size: 6px;
-
-        padding-right: 6px;
-
-        line-height: 1.35;
-
+        font-size: 5px !important;
+        line-height: 1.2 !important;
     }
-
 
     .header-left h1 {
-
-        font-size: 12px;
-
+        font-size: 11px !important;
     }
-
 
     .header-left p {
-
-        font-size: 6px;
-
-        margin: 0;
-
+        font-size: 5px !important;
+        margin: 0 !important;
     }
 
-
-    /* شبكة الأسابيع */
+    /* ==============================
+       18 أسبوع
+       3 أعمدة × 6 صفوف
+    ============================== */
 
     .weeks-container {
+        width: 204mm !important;
+        height: 273mm !important;
 
-        width: 100%;
+        margin: 0 auto !important;
+        padding: 0 !important;
 
-        max-width: none;
+        display: grid !important;
 
-        margin: 0;
+        grid-template-columns:
+            repeat(3, 1fr) !important;
 
-        padding: 0;
+        grid-template-rows:
+            repeat(6, 1fr) !important;
 
-        display: grid;
+        gap: 1.2mm !important;
 
-        grid-template-columns: repeat(3, 1fr);
+        overflow: hidden !important;
 
-        grid-template-rows: repeat(6, 1fr);
-
-        gap: 1.5mm;
-
-        height: calc(100vh - 18mm);
-
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
     }
-
 
     /* بطاقة الأسبوع */
-
     .week-card {
+        width: 100% !important;
+        height: 44mm !important;
+        min-height: 44mm !important;
+        max-height: 44mm !important;
 
-        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
 
-        height: 100%;
+        background: #fff !important;
 
-        min-height: 0;
+        border: 0.4px solid #aebbbb !important;
+        border-radius: 1.5mm !important;
 
-        margin: 0;
+        box-shadow: none !important;
 
-        border: .4px solid #9daaaa;
+        overflow: hidden !important;
 
-        border-radius: 2px;
-
-        box-shadow: none;
-
-        overflow: hidden;
-
-        break-inside: avoid;
-
-        page-break-inside: avoid;
-
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
-
 
     /* عنوان الأسبوع */
-
     .week-title {
+        height: 7mm !important;
 
-        padding: 1.2mm 1mm;
+        padding: 1mm !important;
 
-        font-size: 8px;
+        font-size: 7.5px !important;
+        line-height: 1.1 !important;
 
-        line-height: 1.1;
+        background: #124958 !important;
+        color: white !important;
 
-        border-bottom: 1px solid #18a38f;
-
+        border-bottom: 0.7px solid #18a38f !important;
     }
-
 
     .week-date {
-
-        font-size: 5.5px;
-
-        margin-top: 1px;
-
+        font-size: 4.5px !important;
+        margin-top: 0.5mm !important;
     }
-
 
     /* رأس الأيام */
-
     .days-header {
+        height: 4mm !important;
 
-        grid-template-columns: 25px 1fr 20px;
+        display: grid !important;
 
-        padding: 1mm;
+        grid-template-columns:
+            13mm 1fr 9mm !important;
 
-        font-size: 5px;
+        padding: 0.6mm !important;
 
-        line-height: 1;
+        font-size: 4.5px !important;
+        line-height: 1 !important;
 
+        background: #edf2f2 !important;
     }
 
-
-    /* صفوف الأيام الثلاثة */
-
+    /* الأيام */
     .day-row {
+        height: 10.8mm !important;
+        min-height: 10.8mm !important;
+        max-height: 10.8mm !important;
 
-        grid-template-columns: 25px 1fr 20px;
+        display: grid !important;
 
-        min-height: 0;
+        grid-template-columns:
+            13mm 1fr 9mm !important;
 
-        height: calc((100% - 13mm) / 4);
+        padding: 0 !important;
+        margin: 0 !important;
 
-        border-bottom: .4px solid #d9dfdf;
+        border-bottom: 0.3px solid #d9dfdf !important;
 
+        overflow: hidden !important;
+
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
-
 
     .day-name {
-
-        font-size: 5.5px;
-
+        font-size: 5px !important;
     }
-
 
     .day-content {
+        padding: 0.6mm !important;
 
-        padding: 1px;
+        min-width: 0 !important;
+        max-width: 100% !important;
 
-        min-width: 0;
-
-        overflow: hidden;
-
+        overflow: hidden !important;
     }
-
 
     .day-sessions {
-
-        font-size: 5.5px;
-
+        font-size: 5px !important;
     }
-
 
     /* لا يوجد برنامج */
-
     .no-program {
-
-        font-size: 5px;
-
-        padding: 2px;
-
+        font-size: 4.5px !important;
+        padding: 0.5mm !important;
     }
-
 
     .add-text {
-
-        display: none;
-
+        display: none !important;
     }
 
-
-    /* البرامج */
-
+    /* البرنامج */
     .program-item {
+        padding: 0.45mm 0.8mm !important;
+        margin-bottom: 0.2mm !important;
 
-        padding: 1px 2px;
+        border-right: 0.7px solid #159589 !important;
 
-        margin-bottom: 1px;
+        border-radius: 0.7mm !important;
 
-        border-right: 1px solid #159589;
+        overflow: hidden !important;
 
-        border-radius: 1px;
-
-        overflow: hidden;
-
+        white-space: nowrap !important;
     }
-
 
     .program-name {
+        font-size: 4.7px !important;
+        line-height: 1.05 !important;
 
-        font-size: 5px;
-
-        line-height: 1.1;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
-
 
     .program-field {
+        font-size: 3.9px !important;
+        line-height: 1 !important;
 
-        font-size: 4px;
-
-        line-height: 1;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-
-        margin-top: 0;
-
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
-
 
     .program-sessions {
-
-        font-size: 4px;
-
-        line-height: 1;
-
-        margin-top: 0;
-
+        font-size: 3.9px !important;
+        line-height: 1 !important;
     }
 
-
-    /* منع تقسيم البطاقات */
-
+    /* منع أي شيء من إضافة صفحات */
+    .weeks-container,
     .week-card,
     .week-title,
     .days-header,
     .day-row {
-
-        break-inside: avoid;
-
-        page-break-inside: avoid;
-
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
-
 }
