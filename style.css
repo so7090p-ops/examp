@@ -1,0 +1,822 @@
+@page {
+    size: A4 landscape;
+    margin: 7mm;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    background: #f1f4f4;
+
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    color: #173f49;
+}
+
+
+/* =========================
+   الرأس
+========================= */
+
+.header {
+
+    background: white;
+
+    border-top:
+        5px solid #168f87;
+
+    border-bottom:
+        5px solid #168f87;
+
+    padding: 12px 25px;
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+}
+
+
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.ministry {
+
+    color: #159589;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+.school-info {
+
+    border-right:
+        2px solid #d7e5e5;
+
+    padding-right: 18px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    line-height: 1.7;
+}
+
+
+.school-info span {
+
+    color: #168b86;
+}
+
+
+.header-left {
+
+    text-align: left;
+}
+
+
+.header-left h1 {
+
+    margin: 0;
+
+    color: #164d5b;
+
+    font-size: 24px;
+}
+
+
+.header-left p {
+
+    margin: 4px 0 0;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+
+/* =========================
+   لوحة التحكم
+========================= */
+
+.control-panel {
+
+    max-width: 1400px;
+
+    margin:
+        0 auto 15px;
+
+    padding: 10px 15px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+}
+
+
+.summary {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    margin-bottom: 9px;
+
+    font-size: 13px;
+}
+
+
+.summary strong {
+
+    color: #159589;
+
+    font-size: 17px;
+}
+
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+
+button {
+
+    border: 0;
+
+    border-radius: 6px;
+
+    padding: 8px 13px;
+
+    background: #164d5b;
+
+    color: white;
+
+    font-family: Tahoma;
+
+    cursor: pointer;
+}
+
+
+.green {
+
+    background: #159589 !important;
+}
+
+
+.red {
+
+    background: #b44d4d !important;
+}
+
+
+
+/* =========================
+   بطاقات الأسابيع
+========================= */
+
+.weeks-container {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.week-card {
+
+    background: white;
+
+    border:
+        1px solid #c5d4d7;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 6px rgba(0,0,0,.09);
+}
+
+
+.week-title {
+
+    background: #124958;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 7px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    border-bottom:
+        3px solid #18a38f;
+}
+
+
+.week-date {
+
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    font-weight: normal;
+
+    opacity: .95;
+}
+
+
+/* رأس الأيام */
+
+.days-header {
+
+    display: grid;
+
+    grid-template-columns:
+        62px 1fr 48px;
+
+    background: #edf2f2;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    padding: 4px;
+
+    border-bottom:
+        1px solid #d3dddd;
+}
+
+
+/* صف اليوم */
+
+.day-row {
+
+    display: grid;
+
+    grid-template-columns:
+        62px 1fr 48px;
+
+    min-height: 44px;
+
+    border-bottom:
+        1px solid #e0e5e5;
+}
+
+
+.day-name {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+.day-content {
+
+    padding: 4px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.day-content:hover {
+
+    background: #edf9f7;
+}
+
+
+.no-program {
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 10px;
+
+    padding: 7px;
+}
+
+
+.add-text {
+
+    color: #159589;
+
+    font-size: 8px;
+
+    margin-top: 2px;
+}
+
+
+
+/* البرنامج */
+
+.program-item {
+
+    background: #f4f8f8;
+
+    border-right:
+        3px solid #159589;
+
+    border-radius: 5px;
+
+    padding: 4px 5px;
+
+    margin-bottom: 3px;
+
+    cursor: pointer;
+}
+
+
+.program-name {
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    color: #164d5b;
+}
+
+
+.program-field {
+
+    font-size: 8px;
+
+    color: #777;
+
+    margin-top: 2px;
+}
+
+
+.program-sessions {
+
+    font-size: 8px;
+
+    color: #159589;
+
+    margin-top: 1px;
+}
+
+
+.day-sessions {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #159589;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================
+   النوافذ
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(0,0,0,.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+}
+
+
+.modal.show {
+
+    display: flex;
+}
+
+
+.modal-box {
+
+    width:
+        min(500px, 100%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 13px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.25);
+}
+
+
+.settings-box {
+
+    width:
+        min(650px, 100%);
+}
+
+
+.modal-header {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid #ddd;
+
+    margin-bottom: 14px;
+}
+
+
+.modal-header h2 {
+
+    margin: 0 0 10px;
+
+    color: #164d5b;
+}
+
+
+.modal-header button {
+
+    background: #b44d4d;
+
+    font-size: 18px;
+
+    padding: 2px 9px;
+}
+
+
+.selected-day {
+
+    background: #edf8f6;
+
+    border-radius: 6px;
+
+    padding: 9px;
+
+    line-height: 1.8;
+
+    margin-bottom: 12px;
+}
+
+
+.modal-box label {
+
+    display: block;
+
+    margin:
+        9px 0 4px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+
+    width: 100%;
+
+    border:
+        1px solid #ccd8d9;
+
+    border-radius: 6px;
+
+    padding: 8px;
+
+    font-family: Tahoma;
+
+    font-size: 11px;
+
+    outline: none;
+}
+
+
+.modal-box textarea {
+
+    min-height: 75px;
+
+    resize: vertical;
+}
+
+
+.modal-buttons {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+
+.modal-buttons button {
+
+    flex: 1;
+}
+
+
+.save-btn {
+
+    background: #159589;
+}
+
+
+.cancel-btn {
+
+    background: #777;
+}
+
+
+.hint {
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+
+.fields-input {
+
+    min-height: 130px;
+}
+
+
+.dates-input {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 7px;
+
+    max-height: 350px;
+
+    overflow-y: auto;
+}
+
+
+.date-setting {
+
+    border:
+        1px solid #d5dfdf;
+
+    border-radius: 6px;
+
+    padding: 7px;
+
+    background: #f8fafa;
+}
+
+
+.date-setting strong {
+
+    display: block;
+
+    color: #164d5b;
+
+    margin-bottom: 4px;
+
+    font-size: 11px;
+}
+
+
+.date-setting input {
+
+    font-size: 10px;
+
+    padding: 6px;
+}
+
+
+
+/* =========================
+   الجوال
+========================= */
+
+@media(max-width:900px) {
+
+
+    .header {
+
+        padding: 9px;
+
+    }
+
+
+    .header-right {
+
+        gap: 8px;
+
+    }
+
+
+    .ministry {
+
+        font-size: 12px;
+
+    }
+
+
+    .school-info {
+
+        font-size: 8px;
+
+        padding-right: 8px;
+
+    }
+
+
+    .header-left h1 {
+
+        font-size: 14px;
+
+    }
+
+
+    .header-left p {
+
+        font-size: 8px;
+
+    }
+
+
+    .summary {
+
+        gap: 12px;
+
+        font-size: 9px;
+
+    }
+
+
+    .summary strong {
+
+        font-size: 13px;
+
+    }
+
+
+    .weeks-container {
+
+        grid-template-columns: 1fr;
+
+        padding: 0 7px;
+
+    }
+
+
+    .week-title {
+
+        font-size: 15px;
+
+    }
+
+
+    .dates-input {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+
+/* =========================
+   الطباعة
+========================= */
+
+@media print {
+
+
+    body {
+
+        background: white;
+
+    }
+
+
+    .tools,
+    .control-panel {
+
+        display: none !important;
+
+    }
+
+
+    .header {
+
+        box-shadow: none;
+
+    }
+
+
+    .weeks-container {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 4mm;
+
+    }
+
+
+    .week-card {
+
+        break-inside: avoid;
+
+        box-shadow: none;
+
+    }
+
+
+    .modal {
+
+        display: none !important;
+
+    }
+
+}

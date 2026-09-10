@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>خطة النشاط الطلابي</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="header-right">
+
+        <div class="ministry">
+            وزارة التربية والتعليم
+        </div>
+
+        <div class="school-info">
+            الإدارة العامة للتعليم بمحافظة الليث<br>
+            إدارة التعليم<br>
+            <span>خطة النشاط الطلابي</span>
+        </div>
+
+    </div>
+
+    <div class="header-left">
+
+        <h1>خطة النشاط الطلابي</h1>
+        <p>العام الدراسي 1448هـ</p>
+
+    </div>
+
+</header>
+
+
+<div class="control-panel">
+
+    <div class="summary">
+
+        <div>
+            الأسابيع:
+            <strong>18</strong>
+        </div>
+
+        <div>
+            البرامج:
+            <strong id="totalPrograms">0</strong>
+        </div>
+
+        <div>
+            حصص النشاط:
+            <strong id="totalSessions">0</strong>
+        </div>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button onclick="openSettings()">
+            ⚙️ إعدادات المجالات والتواريخ
+        </button>
+
+        <button onclick="window.print()">
+            🖨️ طباعة
+        </button>
+
+        <button class="green" onclick="saveAll()">
+            💾 حفظ
+        </button>
+
+        <button class="red" onclick="clearAll()">
+            🗑️ مسح الكل
+        </button>
+
+    </div>
+
+</div>
+
+
+<main id="weeksContainer" class="weeks-container"></main>
+
+
+
+<!-- نافذة البرنامج -->
+
+<div id="programModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>إضافة برنامج نشاط</h2>
+
+            <button onclick="closeModal()">×</button>
+
+        </div>
+
+
+        <div class="selected-day">
+
+            الأسبوع:
+            <strong id="selectedWeek"></strong>
+
+            <br>
+
+            التاريخ:
+            <strong id="selectedDate"></strong>
+
+            <br>
+
+            اليوم:
+            <strong id="selectedDay"></strong>
+
+        </div>
+
+
+        <label>اسم البرنامج</label>
+
+        <input
+            id="programName"
+            type="text"
+            placeholder="اكتبي اسم البرنامج">
+
+
+        <label>المجال</label>
+
+        <select id="programField"></select>
+
+
+        <label>عدد حصص النشاط</label>
+
+        <input
+            id="programSessions"
+            type="number"
+            min="1"
+            value="1">
+
+
+        <label>المنفذة / المعلمة</label>
+
+        <input
+            id="programTeacher"
+            type="text"
+            placeholder="اسم المنفذة">
+
+
+        <label>ملاحظات</label>
+
+        <textarea
+            id="programNotes"
+            placeholder="الملاحظات"></textarea>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="save-btn"
+                onclick="saveProgram()">
+                حفظ البرنامج
+            </button>
+
+            <button
+                class="cancel-btn"
+                onclick="closeModal()">
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- إعدادات المجالات والتواريخ -->
+
+<div id="settingsModal" class="modal">
+
+    <div class="modal-box settings-box">
+
+        <div class="modal-header">
+
+            <h2>إعدادات الخطة</h2>
+
+            <button onclick="closeSettings()">×</button>
+
+        </div>
+
+
+        <h3>المجالات</h3>
+
+        <p class="hint">
+            اكتبي كل مجال في سطر مستقل.
+        </p>
+
+        <textarea
+            id="fieldsInput"
+            class="fields-input"></textarea>
+
+
+        <h3>تواريخ الأسابيع</h3>
+
+        <p class="hint">
+            يمكنك تعديل تاريخ كل أسبوع، واكتبي التاريخ بهذا الشكل:
+            1448/3/10 - 1448/3/14
+        </p>
+
+        <div
+            id="datesInput"
+            class="dates-input">
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="save-btn"
+                onclick="saveSettings()">
+                حفظ الإعدادات
+            </button>
+
+            <button
+                class="cancel-btn"
+                onclick="closeSettings()">
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="main.js"></script>
+
+</body>
+</html>
