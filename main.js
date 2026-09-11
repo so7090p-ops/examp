@@ -1,67 +1,117 @@
+/* =====================================================
+   إعدادات أساسية
+===================================================== */
+
+const TOTAL_WEEKS = 18;
+
 const DAYS = [
     "الأحد",
     "الاثنين",
     "الثلاثاء"
 ];
 
-
-const DEFAULT_FIELDS = [
-    "المواطنة والحياة",
-    "الصحة والسلامة",
-    "العلوم والتقنية",
-    "الرياضة",
-    "الفنون",
-    "النشاط الكشفي",
-    "الأنشطة الثقافية",
-    "البرامج التربوية"
+let fields = [
+    "المجال الثقافي",
+    "المجال الاجتماعي",
+    "المجال الرياضي",
+    "المجال الفني",
+    "المجال العلمي"
 ];
 
+let weekDates = Array.from(
+    { length: TOTAL_WEEKS },
+    (_, i) => `الأسبوع ${i + 1}`
+);
 
-const DEFAULT_DATES = [
-    "1448/3/10 - 1448/3/14",
-    "1448/3/17 - 1448/3/21",
-    "1448/3/24 - 1448/3/28",
-    "1448/4/2 - 1448/4/6",
-    "1448/4/9 - 1448/4/13",
-    "1448/4/16 - 1448/4/20",
-    "1448/4/23 - 1448/4/27",
-    "1448/4/30 - 1448/5/4",
-    "1448/5/7 - 1448/5/11",
-    "1448/5/14 - 1448/5/18",
-    "1448/5/21 - 1448/5/25",
-    "1448/5/28 - 1448/6/2",
-    "1448/6/5 - 1448/6/9",
-    "1448/6/12 - 1448/6/16",
-    "1448/6/19 - 1448/6/23",
-    "1448/6/26 - 1448/6/30",
-    "1448/7/11 - 1448/7/15",
-    "1448/7/18 - 1448/7/22"
-];
+let programs = {};
 
-
-let fields =
-    JSON.parse(
-        localStorage.getItem("activityFields")
-    ) || DEFAULT_FIELDS;
-
-
-let weekDates =
-    JSON.parse(
-        localStorage.getItem("weekDates")
-    ) || DEFAULT_DATES;
-
-
-let data =
-    JSON.parse(
-        localStorage.getItem("activityPlan")
-    ) || {};
-
+let settings = {
+    region: "القصيم",
+    administration: "إدارة التعليم بالقصيم",
+    school: "اسم المدرسة",
+    year: "1448هـ"
+};
 
 let selectedWeek = null;
 let selectedDay = null;
 
 
-function createWeeks() {
+/* =====================================================
+   تحميل البيانات
+===================================================== */
+
+function loadData() {
+
+    const savedSettings =
+        localStorage.getItem("activitySettings");
+
+    const savedFields =
+        localStorage.getItem("activityFields");
+
+    const savedDates =
+        localStorage.getItem("activityDates");
+
+    const savedPrograms =
+        localStorage.getItem("activityPrograms");
+
+
+    if (savedSettings) {
+        try {
+            settings = {
+                ...settings,
+                ...JSON.parse(savedSettings)
+            };
+        } catch (e) {}
+    }
+
+
+    if (savedFields) {
+        try {
+            fields = JSON.parse(savedFields);
+        } catch (e) {}
+    }
+
+
+    if (savedDates) {
+        try {
+            weekDates = JSON.parse(savedDates);
+        } catch (e) {}
+    }
+
+
+    if (savedPrograms) {
+        try {
+            programs = JSON.parse(savedPrograms);
+        } catch (e) {}
+    }
+}
+
+
+/* =====================================================
+   عرض البيانات في الرأس
+===================================================== */
+
+function updateHeader() {
+
+    document.getElementById("headerRegion").textContent =
+        settings.region || "—";
+
+    document.getElementById("headerAdministration").textContent =
+        settings.administration || "—";
+
+    document.getElementById("headerSchool").textContent =
+        settings.school || "—";
+
+    document.getElementById("headerYear").textContent =
+        settings.year || "1448هـ";
+}
+
+
+/* =====================================================
+   إنشاء الأسابيع
+===================================================== */
+
+function renderWeeks() {
 
     const container =
         document.getElementById("weeksContainer");
@@ -69,53 +119,45 @@ function createWeeks() {
     container.innerHTML = "";
 
 
-    for (
-        let week = 1;
-        week <= 18;
-        week++
-    ) {
-
-        if (!data[week]) {
-            data[week] = {};
-        }
-
+    for (let week = 1; week <= TOTAL_WEEKS; week++) {
 
         const card =
-            document.createElement("div");
+            document.createElement("section");
 
         card.className = "week-card";
 
 
-        card.innerHTML = `
+        const title =
+            document.createElement("div");
 
-            <div class="week-title">
+        title.className = "week-title";
 
-                الأسبوع ${week}
-
-                <div class="week-date">
-                    ${weekDates[week - 1]}
-                </div>
-
+        title.innerHTML = `
+            الأسبوع ${week}
+            <div class="week-date">
+                ${escapeHtml(weekDates[week - 1] || "")}
             </div>
-
-
-            <div class="days-header">
-
-                <div>اليوم</div>
-                <div>البرنامج</div>
-                <div>الحصص</div>
-
-            </div>
-
         `;
 
 
+        card.appendChild(title);
+
+
+        const header =
+            document.createElement("div");
+
+        header.className = "days-header";
+
+        header.innerHTML = `
+            <div>اليوم</div>
+            <div>البرنامج</div>
+            <div>الحصص</div>
+        `;
+
+        card.appendChild(header);
+
+
         DAYS.forEach(day => {
-
-            if (!data[week][day]) {
-                data[week][day] = [];
-            }
-
 
             const row =
                 document.createElement("div");
@@ -123,30 +165,130 @@ function createWeeks() {
             row.className = "day-row";
 
 
-            row.innerHTML = `
+            const name =
+                document.createElement("div");
 
-                <div class="day-name">
-                    ${day}
-                </div>
+            name.className = "day-name";
 
-
-                <div
-                    class="day-content"
-                    onclick="openProgram(${week}, '${day}')">
-
-                    ${renderPrograms(week, day)}
-
-                </div>
+            name.textContent = day;
 
 
-                <div class="day-sessions">
+            const content =
+                document.createElement("div");
 
-                    ${getDaySessions(week, day)}
+            content.className = "day-content";
 
-                </div>
 
-            `;
+            const sessions =
+                document.createElement("div");
 
+            sessions.className = "day-sessions";
+
+
+            const key =
+                makeKey(week, day);
+
+
+            const dayPrograms =
+                programs[key] || [];
+
+
+            if (dayPrograms.length === 0) {
+
+                content.innerHTML = `
+                    <div class="no-program">
+                        لا يوجد برنامج
+                        <div class="add-text">
+                            اضغطي لإضافة برنامج
+                        </div>
+                    </div>
+                `;
+
+            } else {
+
+                dayPrograms.forEach(program => {
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className = "program-item";
+
+
+                    item.innerHTML = `
+                        <div class="program-name">
+                            ${escapeHtml(program.name)}
+                        </div>
+
+                        <div class="program-field">
+                            ${escapeHtml(program.field)}
+                        </div>
+
+                        ${
+                            program.teacher
+                            ? `
+                            <div class="program-field">
+                                ${escapeHtml(program.teacher)}
+                            </div>
+                            `
+                            : ""
+                        }
+
+                        ${
+                            program.notes
+                            ? `
+                            <div class="program-field">
+                                ${escapeHtml(program.notes)}
+                            </div>
+                            `
+                            : ""
+                        }
+
+                        <div class="program-sessions">
+                            ${program.sessions} حصة
+                        </div>
+                    `;
+
+
+                    item.onclick = function(event) {
+
+                        event.stopPropagation();
+
+                        openProgram(week, day, program.id);
+
+                    };
+
+
+                    content.appendChild(item);
+
+                });
+
+            }
+
+
+            const total =
+                dayPrograms.reduce(
+                    (sum, p) =>
+                        sum + Number(p.sessions || 0),
+                    0
+                );
+
+
+            sessions.textContent =
+                total ? total : "—";
+
+
+            content.onclick = function() {
+
+                openProgram(week, day);
+
+            };
+
+
+            row.appendChild(name);
+
+            row.appendChild(content);
+
+            row.appendChild(sessions);
 
             card.appendChild(row);
 
@@ -154,315 +296,117 @@ function createWeeks() {
 
 
         container.appendChild(card);
-
     }
 
 
     updateSummary();
+}
+
+
+/* =====================================================
+   مفتاح البرنامج
+===================================================== */
+
+function makeKey(week, day) {
+
+    return `${week}-${day}`;
 
 }
 
 
+/* =====================================================
+   فتح نافذة البرنامج
+===================================================== */
 
-function renderPrograms(week, day) {
-
-    const programs =
-        data[week][day];
-
-
-    if (
-        !programs ||
-        programs.length === 0
-    ) {
-
-        return `
-
-            <div class="no-program">
-
-                لا يوجد برنامج
-
-                <div class="add-text">
-                    + اضغطي للإضافة
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    return programs.map(
-
-        (program, index) => `
-
-            <div
-                class="program-item"
-                onclick="
-                    event.stopPropagation();
-                    editProgram(
-                        ${week},
-                        '${day}',
-                        ${index}
-                    )
-                "
-            >
-
-                <div class="program-name">
-                    ${escapeHtml(program.name)}
-                </div>
-
-
-                <div class="program-field">
-                    ${escapeHtml(program.field)}
-                </div>
-
-
-                <div class="program-sessions">
-                    حصص: ${program.sessions}
-                </div>
-
-            </div>
-
-        `
-
-    ).join("");
-
-}
-
-
-
-function getDaySessions(week, day) {
-
-    return (
-        data[week][day] || []
-    ).reduce(
-
-        (total, item) =>
-            total +
-            Number(item.sessions || 0),
-
-        0
-
-    );
-
-}
-
-
-
-function openProgram(week, day) {
+function openProgram(week, day, programId = null) {
 
     selectedWeek = week;
+
     selectedDay = day;
 
 
-    document.getElementById(
-        "selectedWeek"
-    ).textContent =
-        "الأسبوع " + week;
+    document.getElementById("selectedWeek").textContent =
+        `الأسبوع ${week}`;
 
+    document.getElementById("selectedDate").textContent =
+        weekDates[week - 1] || "";
 
-    document.getElementById(
-        "selectedDate"
-    ).textContent =
-        weekDates[week - 1];
-
-
-    document.getElementById(
-        "selectedDay"
-    ).textContent =
+    document.getElementById("selectedDay").textContent =
         day;
-
-
-    document.getElementById(
-        "programName"
-    ).value = "";
-
-
-    document.getElementById(
-        "programSessions"
-    ).value = 1;
-
-
-    document.getElementById(
-        "programTeacher"
-    ).value = "";
-
-
-    document.getElementById(
-        "programNotes"
-    ).value = "";
 
 
     fillFields();
 
 
-    document.getElementById(
-        "programModal"
-    ).classList.add("show");
+    document.getElementById("programName").value = "";
+
+    document.getElementById("programSessions").value = 1;
+
+    document.getElementById("programTeacher").value = "";
+
+    document.getElementById("programNotes").value = "";
+
+
+    if (programId) {
+
+        const key =
+            makeKey(week, day);
+
+        const list =
+            programs[key] || [];
+
+        const program =
+            list.find(p => p.id === programId);
+
+
+        if (program) {
+
+            document.getElementById("programName").value =
+                program.name || "";
+
+            document.getElementById("programField").value =
+                program.field || "";
+
+            document.getElementById("programSessions").value =
+                program.sessions || 1;
+
+            document.getElementById("programTeacher").value =
+                program.teacher || "";
+
+            document.getElementById("programNotes").value =
+                program.notes || "";
+
+        }
+    }
+
+
+    document
+        .getElementById("programModal")
+        .classList.add("show");
+}
+
+
+/* =====================================================
+   إغلاق البرنامج
+===================================================== */
+
+function closeModal() {
+
+    document
+        .getElementById("programModal")
+        .classList.remove("show");
 
 }
 
 
-
-function editProgram(
-    week,
-    day,
-    index
-) {
-
-    selectedWeek = week;
-    selectedDay = day;
-
-
-    const program =
-        data[week][day][index];
-
-
-    document.getElementById(
-        "selectedWeek"
-    ).textContent =
-        "الأسبوع " + week;
-
-
-    document.getElementById(
-        "selectedDate"
-    ).textContent =
-        weekDates[week - 1];
-
-
-    document.getElementById(
-        "selectedDay"
-    ).textContent =
-        day;
-
-
-    document.getElementById(
-        "programName"
-    ).value =
-        program.name;
-
-
-    fillFields();
-
-
-    document.getElementById(
-        "programField"
-    ).value =
-        program.field;
-
-
-    document.getElementById(
-        "programSessions"
-    ).value =
-        program.sessions;
-
-
-    document.getElementById(
-        "programTeacher"
-    ).value =
-        program.teacher || "";
-
-
-    document.getElementById(
-        "programNotes"
-    ).value =
-        program.notes || "";
-
-
-    document.getElementById(
-        "programModal"
-    ).classList.add("show");
-
-}
-
-
-
-function saveProgram() {
-
-    const name =
-        document.getElementById(
-            "programName"
-        ).value.trim();
-
-
-    if (!name) {
-
-        alert(
-            "اكتبي اسم البرنامج أولاً"
-        );
-
-        return;
-
-    }
-
-
-    const field =
-        document.getElementById(
-            "programField"
-        ).value;
-
-
-    const sessions =
-        document.getElementById(
-            "programSessions"
-        ).value;
-
-
-    const teacher =
-        document.getElementById(
-            "programTeacher"
-        ).value;
-
-
-    const notes =
-        document.getElementById(
-            "programNotes"
-        ).value;
-
-
-    if (!data[selectedWeek]) {
-        data[selectedWeek] = {};
-    }
-
-
-    if (!data[selectedWeek][selectedDay]) {
-        data[selectedWeek][selectedDay] = [];
-    }
-
-
-    data[selectedWeek][selectedDay].push({
-
-        name: name,
-
-        field: field,
-
-        sessions: sessions,
-
-        teacher: teacher,
-
-        notes: notes
-
-    });
-
-
-    saveAll(false);
-
-    closeModal();
-
-    createWeeks();
-
-}
-
-
+/* =====================================================
+   المجالات
+===================================================== */
 
 function fillFields() {
 
     const select =
-        document.getElementById(
-            "programField"
-        );
-
+        document.getElementById("programField");
 
     select.innerHTML = "";
 
@@ -472,62 +416,178 @@ function fillFields() {
         const option =
             document.createElement("option");
 
-
         option.value = field;
 
         option.textContent = field;
-
 
         select.appendChild(option);
 
     });
 
+
+    if (fields.length === 0) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = "";
+
+        option.textContent = "أضيفي المجالات من الإعدادات";
+
+        select.appendChild(option);
+    }
 }
 
 
+/* =====================================================
+   حفظ البرنامج
+===================================================== */
+
+function saveProgram() {
+
+    if (selectedWeek === null ||
+        selectedDay === null) {
+        return;
+    }
+
+
+    const name =
+        document.getElementById("programName")
+        .value
+        .trim();
+
+
+    if (!name) {
+
+        alert("اكتبي اسم البرنامج أولاً");
+
+        return;
+    }
+
+
+    const field =
+        document.getElementById("programField")
+        .value;
+
+
+    const sessions =
+        Number(
+            document.getElementById("programSessions")
+            .value
+        ) || 1;
+
+
+    const teacher =
+        document.getElementById("programTeacher")
+        .value
+        .trim();
+
+
+    const notes =
+        document.getElementById("programNotes")
+        .value
+        .trim();
+
+
+    const key =
+        makeKey(selectedWeek, selectedDay);
+
+
+    if (!programs[key]) {
+        programs[key] = [];
+    }
+
+
+    programs[key].push({
+
+        id:
+            Date.now() +
+            Math.random(),
+
+        name,
+
+        field,
+
+        sessions,
+
+        teacher,
+
+        notes
+
+    });
+
+
+    saveStorage();
+
+    closeModal();
+
+    renderWeeks();
+}
+
+
+/* =====================================================
+   إعدادات الخطة
+===================================================== */
 
 function openSettings() {
 
-    document.getElementById(
-        "fieldsInput"
-    ).value =
+    document.getElementById("regionInput").value =
+        settings.region;
+
+    document.getElementById("administrationInput").value =
+        settings.administration;
+
+    document.getElementById("schoolInput").value =
+        settings.school;
+
+    document.getElementById("yearInput").value =
+        settings.year;
+
+
+    document.getElementById("fieldsInput").value =
         fields.join("\n");
 
 
-    createDateSettings();
+    createDateInputs();
 
 
-    document.getElementById(
-        "settingsModal"
-    ).classList.add("show");
+    document
+        .getElementById("settingsModal")
+        .classList.add("show");
+}
+
+
+/* =====================================================
+   إغلاق الإعدادات
+===================================================== */
+
+function closeSettings() {
+
+    document
+        .getElementById("settingsModal")
+        .classList.remove("show");
 
 }
 
 
+/* =====================================================
+   إنشاء حقول التواريخ
+===================================================== */
 
-function createDateSettings() {
+function createDateInputs() {
 
     const container =
-        document.getElementById(
-            "datesInput"
-        );
-
+        document.getElementById("datesInput");
 
     container.innerHTML = "";
 
 
-    for (
-        let i = 0;
-        i < 18;
-        i++
-    ) {
+    for (let i = 0; i < TOTAL_WEEKS; i++) {
 
         const box =
             document.createElement("div");
 
-
-        box.className =
-            "date-setting";
+        box.className = "date-setting";
 
 
         box.innerHTML = `
@@ -537,90 +597,109 @@ function createDateSettings() {
             </strong>
 
             <input
-                id="weekDate${i}"
                 type="text"
-                value="${weekDates[i]}"
-            >
+                data-week="${i}"
+                value="${escapeAttribute(
+                    weekDates[i] || ""
+                )}"
+                placeholder="من تاريخ - إلى تاريخ">
 
         `;
 
 
         container.appendChild(box);
-
     }
-
 }
 
 
+/* =====================================================
+   حفظ الإعدادات
+===================================================== */
 
 function saveSettings() {
 
+    settings.region =
+        document.getElementById("regionInput")
+        .value
+        .trim();
+
+
+    settings.administration =
+        document.getElementById("administrationInput")
+        .value
+        .trim();
+
+
+    settings.school =
+        document.getElementById("schoolInput")
+        .value
+        .trim();
+
+
+    settings.year =
+        document.getElementById("yearInput")
+        .value
+        .trim();
+
+
     fields =
-        document.getElementById(
-            "fieldsInput"
-        ).value
-
+        document.getElementById("fieldsInput")
+        .value
         .split("\n")
-
-        .map(item => item.trim())
-
+        .map(x => x.trim())
         .filter(Boolean);
 
 
-    for (
-        let i = 0;
-        i < 18;
-        i++
-    ) {
-
-        const input =
-            document.getElementById(
-                "weekDate" + i
-            );
+    const dateInputs =
+        document.querySelectorAll(
+            "#datesInput input[data-week]"
+        );
 
 
-        if (input) {
+    dateInputs.forEach(input => {
 
-            weekDates[i] =
-                input.value.trim();
+        const index =
+            Number(input.dataset.week);
 
-        }
+        weekDates[index] =
+            input.value.trim();
 
-    }
-
-
-    localStorage.setItem(
-        "activityFields",
-        JSON.stringify(fields)
-    );
+    });
 
 
-    localStorage.setItem(
-        "weekDates",
-        JSON.stringify(weekDates)
-    );
+    saveStorage();
 
+    updateHeader();
 
-    fillFields();
-
-    createWeeks();
+    renderWeeks();
 
     closeSettings();
 
+}
 
-    alert(
-        "تم حفظ الإعدادات ✓"
-    );
+
+/* =====================================================
+   حفظ كل شيء
+===================================================== */
+
+function saveAll() {
+
+    saveStorage();
+
+    alert("تم حفظ الخطة بنجاح 🌷");
 
 }
 
 
+/* =====================================================
+   التخزين
+===================================================== */
 
-function saveAll(showMessage = true) {
+function saveStorage() {
 
     localStorage.setItem(
-        "activityPlan",
-        JSON.stringify(data)
+        "activitySettings",
+        JSON.stringify(settings)
     );
 
 
@@ -631,155 +710,117 @@ function saveAll(showMessage = true) {
 
 
     localStorage.setItem(
-        "weekDates",
+        "activityDates",
         JSON.stringify(weekDates)
     );
 
 
-    updateSummary();
-
-
-    if (showMessage) {
-
-        alert(
-            "تم حفظ البيانات ✓"
-        );
-
-    }
-
+    localStorage.setItem(
+        "activityPrograms",
+        JSON.stringify(programs)
+    );
 }
 
 
+/* =====================================================
+   مسح البرامج
+===================================================== */
+
+function clearAll() {
+
+    const confirmDelete =
+        confirm(
+            "هل تريدين حذف جميع البرامج؟"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    programs = {};
+
+    saveStorage();
+
+    renderWeeks();
+}
+
+
+/* =====================================================
+   الإحصائيات
+===================================================== */
 
 function updateSummary() {
 
-    let programs = 0;
-    let sessions = 0;
+    let totalPrograms = 0;
+
+    let totalSessions = 0;
 
 
-    for (
-        let week = 1;
-        week <= 18;
-        week++
-    ) {
+    Object.values(programs).forEach(list => {
 
-        if (!data[week])
-            continue;
+        list.forEach(program => {
 
+            totalPrograms++;
 
-        DAYS.forEach(day => {
-
-            const list =
-                data[week][day] || [];
-
-
-            programs += list.length;
-
-
-            list.forEach(item => {
-
-                sessions +=
-                    Number(
-                        item.sessions || 0
-                    );
-
-            });
+            totalSessions +=
+                Number(program.sessions || 0);
 
         });
 
-    }
+    });
 
 
     document.getElementById(
         "totalPrograms"
     ).textContent =
-        programs;
+        totalPrograms;
 
 
     document.getElementById(
         "totalSessions"
     ).textContent =
-        sessions;
+        totalSessions;
 
-}
-
-
-
-function closeModal() {
 
     document.getElementById(
-        "programModal"
-    ).classList.remove("show");
-
+        "totalWeeks"
+    ).textContent =
+        TOTAL_WEEKS;
 }
 
 
+/* =====================================================
+   حماية النصوص
+===================================================== */
 
-function closeSettings() {
+function escapeHtml(value) {
 
-    document.getElementById(
-        "settingsModal"
-    ).classList.remove("show");
-
-}
-
-
-
-function clearAll() {
-
-    if (
-        !confirm(
-            "هل تريدين مسح جميع البرامج؟"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    data = {};
-
-
-    localStorage.removeItem(
-        "activityPlan"
-    );
-
-
-    createWeeks();
-
-}
-
-
-
-function escapeHtml(text) {
-
-    return String(text)
-
+    return String(value ?? "")
         .replace(/&/g, "&amp;")
-
         .replace(/</g, "&lt;")
-
         .replace(/>/g, "&gt;")
-
         .replace(/"/g, "&quot;")
-
         .replace(/'/g, "&#039;");
+}
+
+
+function escapeAttribute(value) {
+
+    return escapeHtml(value);
 
 }
 
 
+/* =====================================================
+   التشغيل
+===================================================== */
 
-document.addEventListener(
+loadData();
 
-    "DOMContentLoaded",
+updateHeader();
 
-    function () {
+fillFields();
 
-        createWeeks();
-
-        fillFields();
-
-    }
-
-);
+renderWeeks();

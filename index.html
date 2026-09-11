@@ -2,12 +2,12 @@
 <html lang="ar" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>خطة النشاط الطلابي</title>
+    <title>خطة النشاط الطلابي</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,22 +21,46 @@
         </div>
 
         <div class="school-info">
-            الإدارة العامة للتعليم بمحافظة المذنب<br>
-            إدارة التعليم<br>
-            <span>خطة النشاط الطلابي</span>
+
+            <div>
+                المحافظة:
+                <span id="headerRegion">القصيم</span>
+            </div>
+
+            <div>
+                الإدارة:
+                <span id="headerAdministration">
+                    إدارة التعليم بالقصيم
+                </span>
+            </div>
+
+            <div>
+                المدرسة:
+                <span id="headerSchool">
+                    اسم المدرسة
+                </span>
+            </div>
+
         </div>
 
     </div>
 
+
     <div class="header-left">
 
         <h1>خطة النشاط الطلابي</h1>
-        <p>العام الدراسي 1448هـ</p>
+
+        <p>
+            العام الدراسي
+            <span id="headerYear">1448هـ</span>
+        </p>
 
     </div>
 
 </header>
 
+
+<!-- لوحة التحكم -->
 
 <div class="control-panel">
 
@@ -44,7 +68,7 @@
 
         <div>
             الأسابيع:
-            <strong>18</strong>
+            <strong id="totalWeeks">18</strong>
         </div>
 
         <div>
@@ -63,7 +87,7 @@
     <div class="buttons">
 
         <button onclick="openSettings()">
-            ⚙️ إعدادات المجالات والتواريخ
+            ⚙️ إعدادات الخطة
         </button>
 
         <button onclick="window.print()">
@@ -83,11 +107,14 @@
 </div>
 
 
+<!-- الأسابيع -->
+
 <main id="weeksContainer" class="weeks-container"></main>
 
 
-
-<!-- نافذة البرنامج -->
+<!-- =========================
+     نافذة إضافة البرنامج
+========================= -->
 
 <div id="programModal" class="modal">
 
@@ -178,8 +205,9 @@
 </div>
 
 
-
-<!-- إعدادات المجالات والتواريخ -->
+<!-- =========================
+     إعدادات الخطة
+========================= -->
 
 <div id="settingsModal" class="modal">
 
@@ -194,6 +222,45 @@
         </div>
 
 
+        <!-- بيانات المدرسة -->
+
+        <h3>بيانات المدرسة</h3>
+
+
+        <label>المحافظة</label>
+
+        <input
+            id="regionInput"
+            type="text"
+            placeholder="مثال: القصيم">
+
+
+        <label>الإدارة</label>
+
+        <input
+            id="administrationInput"
+            type="text"
+            placeholder="مثال: إدارة التعليم بالقصيم">
+
+
+        <label>اسم المدرسة</label>
+
+        <input
+            id="schoolInput"
+            type="text"
+            placeholder="اكتبي اسم المدرسة">
+
+
+        <label>العام الدراسي</label>
+
+        <input
+            id="yearInput"
+            type="text"
+            placeholder="مثال: 1448هـ">
+
+
+        <!-- المجالات -->
+
         <h3>المجالات</h3>
 
         <p class="hint">
@@ -205,11 +272,12 @@
             class="fields-input"></textarea>
 
 
+        <!-- تواريخ الأسابيع -->
+
         <h3>تواريخ الأسابيع</h3>
 
         <p class="hint">
-            يمكنك تعديل تاريخ كل أسبوع، واكتبي التاريخ بهذا الشكل:
-            1448/3/10 - 1448/3/14
+            يمكنك تعديل تاريخ كل أسبوع.
         </p>
 
         <div
@@ -237,7 +305,6 @@
     </div>
 
 </div>
-
 
 
 <script src="main.js"></script>
